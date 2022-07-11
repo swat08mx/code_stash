@@ -1,7 +1,11 @@
-num1 = input("Enter a number: ")
-num2 = input("Enter another number: ")
+print(" Available functions are- + - * / ^ ")
 sign = input("Enter a sign: ")
-
+num1 = input("Enter a number: ")
+if sign == "^":
+    power = input("Enter a power: ")
+    print(int(num1) ** int(power))
+else:
+    num2 = input("Enter another number: ")
 
 if sign == "+":
     print(float(num1) + float(num2))
@@ -11,11 +15,6 @@ elif sign == "*":
     print(float(num1) * float(num2))
 elif sign == "/":
     print(float(num1) / float(num2))
-else:
-    print("Sign is invalid")
-while num2 > num1:
-    print(num2)
-    num2=num2-1.57
 
 
 
