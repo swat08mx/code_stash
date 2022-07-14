@@ -60,6 +60,19 @@ def encrypt(phase):
 
 print(encrypt(input("Enter a message: ")))
 
+def deencrypt(phase):
+   deencryption = ""
+   for letter in phase:
+      if letter in "!":
+         deencryption = deencryption + "a"
+   return deencryption
+
+
+
+print(deencrypt(input("Enter the encrypted message: ")))
+
+
+
 
 
 
