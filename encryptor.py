@@ -1,9 +1,4 @@
-#letters = ("abcdefghijklmnopqrstuvwxyz")
-#entry = input("Enter the message: ")
 
-#if entry in "a":
- #  for letters in entry.replace("a", "!"):
-  #    print(letters)
 
 def encrypt(phase):
    encryption = ""
