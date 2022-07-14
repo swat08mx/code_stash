@@ -10,7 +10,7 @@ def encrypt(phase):
       elif letter in "cC":
          encryption = encryption + "2"
       elif letter in "dD":
-         encryption = encryption + "9"
+         encryption = encryption + "?"
       elif letter in "eE":
          encryption = encryption + "6"
       elif letter in "fF":
@@ -60,16 +60,65 @@ def encrypt(phase):
 
 print(encrypt(input("Enter a message: ")))
 
-def deencrypt(phase):
-   deencryption = ""
+def decrypt(phase):
+   decryption = ""
    for letter in phase:
       if letter in "!":
-         deencryption = deencryption + "a"
-   return deencryption
-
-
-
-print(deencrypt(input("Enter the encrypted message: ")))
+         decryption = decryption + "a"
+      elif letter in "J":
+         decryption = decryption + "b"
+      elif letter in "2":
+         decryption = decryption + "c"
+      elif letter in "?":
+         decryption = decryption + "d"
+      elif letter in "6":
+         decryption = decryption + "e"
+      elif letter in "^":
+         decryption = decryption + "f"
+      elif letter in "&":
+         decryption = decryption + "g"
+      elif letter in "*":
+         decryption = decryption + "h"
+      elif letter in "q":
+         decryption = decryption + "i"
+      elif letter in "8":
+         decryption = decryption + "j"
+      elif letter in "$":
+         decryption = decryption + "k"
+      elif letter in "3":
+         decryption = decryption + "l"
+      elif letter in "7":
+         decryption = decryption + "m"
+      elif letter in "t":
+         decryption = decryption + "n"
+      elif letter in "9":
+         decryption = decryption + "o"
+      elif letter in "Q":
+         decryption = decryption + "p"
+      elif letter in "-":
+         decryption = decryption + "q"
+      elif letter in "%":
+         decryption = decryption + "r"
+      elif letter in "4":
+         decryption = decryption + "s"
+      elif letter in "#":
+         decryption = decryption + "t"
+      elif letter in "/":
+         decryption = decryption + "u"
+      elif letter in "B":
+         decryption = decryption + "v"
+      elif letter in ">":
+         decryption = decryption + "w"
+      elif letter in "f":
+         decryption = decryption + "x"
+      elif letter in "h":
+         decryption = decryption + "y"
+      elif letter in "r":
+         decryption = decryption + "z"
+   
+   return decryption
+   
+print(decrypt(input("Enter the encrypted message: ")))
 
 
 
