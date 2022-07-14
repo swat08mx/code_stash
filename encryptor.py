@@ -1,5 +1,5 @@
-
-
+print("swatencryptor")
+print("Available features are encryption and decryption. Type (en) for encryption and (de) for decryption")
 def encrypt(phase):
    encryption = ""
    for letter in phase:
@@ -58,7 +58,6 @@ def encrypt(phase):
     
    return encryption
 
-print(encrypt(input("Enter a message: ")))
 
 def decrypt(phase):
    decryption = ""
@@ -117,8 +116,15 @@ def decrypt(phase):
          decryption = decryption + "z"
    
    return decryption
+
+
+val = input("Enter your choice: ")
+if val == "en":
+   print(encrypt(input("Enter the message: ")))
+elif val == "de":
+   print(decrypt(input("Enter the encrypted message: ")))
    
-print(decrypt(input("Enter the encrypted message: ")))
+
 
 
 
