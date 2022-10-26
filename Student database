@@ -2,10 +2,9 @@
 int main()
 {
     int stud_rlno[100], phy_marks[100], chem_marks[100], bio_marks[100], CS_marks[100];
-    int average[100], sum[100], n;
-    int stud_ctrl;
+    int average[100], sum[100];
     char grade[100];
-
+    int n;
     printf("Enter the number of students: ");
     scanf("%d", &n);
 
@@ -21,10 +20,11 @@ int main()
         scanf("%d", &bio_marks[i]);
         printf("Enter the CS marks of student : ");
         scanf("%d", &CS_marks[i]);
+    }
     
     
-        for(int i=1; i<=n; i++)
-        {
+    for(int i=1; i<=n; i++)
+    {
         sum[i] = phy_marks[i] + chem_marks[i] + bio_marks[i] + CS_marks[i];
         average[i] = sum[i]/4;
         
@@ -50,11 +50,11 @@ int main()
         }
         
     }
+    
     printf("Roll no. \t Physics marks \t \t  Chemistry marks \t Biology marks \t \t CS marks \t  Average \t Grade \n");
     for(int i = 1; i<=n; i++)
     {
-        printf("%d \t \t  %d \t \t \t %d \t \t  \t %d \t  \t \t %d  \t \t %d \t  \t %c  \n", stud_rlno[i], phy_marks[i], chem_marks[i], bio_marks[i], CS_marks[i], average[i], grade[i]);
+        printf("%d \t \t  %d \t \t  \t  %d \t \t \t  %d \t  \t \t %d  \t  \t %d \t  \t  %c  \n", stud_rlno[i], phy_marks[i], chem_marks[i], bio_marks[i], CS_marks[i], average[i], grade[i]);
     }
     
-}
 }
