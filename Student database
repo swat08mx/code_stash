@@ -1,0 +1,60 @@
+#include <stdio.h>
+int main()
+{
+    int stud_rlno[100], phy_marks[100], chem_marks[100], bio_marks[100], CS_marks[100];
+    int average[100], sum[100], n;
+    int stud_ctrl;
+    char grade[100];
+
+    printf("Enter the number of students: ");
+    scanf("%d", &n);
+
+    for(int i=1; i<=n; i++)
+    {
+        printf("Enter the roll number of student : ");
+        scanf("%d", &stud_rlno[i]);
+        printf("Enter the physics marks of student : ");
+        scanf("%d", &phy_marks[i]);
+        printf("Enter the chemistry marks of student : ");
+        scanf("%d", &chem_marks[i]);
+        printf("Enter the biology marks of student : ");
+        scanf("%d", &bio_marks[i]);
+        printf("Enter the CS marks of student : ");
+        scanf("%d", &CS_marks[i]);
+    
+    
+        for(int i=1; i<=n; i++)
+        {
+        sum[i] = phy_marks[i] + chem_marks[i] + bio_marks[i] + CS_marks[i];
+        average[i] = sum[i]/4;
+        
+        if(average[i] > 90)
+        {
+            grade[i] = 'A';
+        }   
+        else if(average[i] <= 90 && average[i] > 82)
+        {
+            grade[i] = 'B';
+        }
+        else if(average[i] <= 82 && average[i] > 75)
+        {
+            grade[i] = 'C';
+        }
+        else if(average[i] <= 75 && average[i] > 65)
+        {
+            grade[i] = 'D';
+        }
+        else if(average[i] <= 65)
+        {
+            grade[i] = 'E';
+        }
+        
+    }
+    printf("Roll no. \t Physics marks \t \t  Chemistry marks \t Biology marks \t \t CS marks \t  Average \t Grade \n");
+    for(int i = 1; i<=n; i++)
+    {
+        printf("%d \t \t  %d \t \t \t %d \t \t  \t %d \t  \t \t %d  \t \t %d \t  \t %c  \n", stud_rlno[i], phy_marks[i], chem_marks[i], bio_marks[i], CS_marks[i], average[i], grade[i]);
+    }
+    
+}
+}
