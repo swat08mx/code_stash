@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+    int i = 4;
+    double d = 4.0;
+    char s[] = "HackerRank ";
+
+    int num, sum;
+    double newtwo, sumtwo;
+    char p[500];
+    // Declare second integer, double, and String variables.
+    scanf("%d", &num);
+    scanf("%lf", &newtwo);
+    scanf("\n");
+    scanf("%[^\n]c", p);
+    
+   
+    sum = num + i;
+    sumtwo = newtwo + d;
+    
+    printf("%d \n", sum);
+    printf("%.1lf \n", sumtwo);
+    printf("%s%s", s,p);
+    
+    return 0;
+}
