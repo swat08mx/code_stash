@@ -1,0 +1,58 @@
+
+count=0
+seq = "GATCGAATCGATCAGCTAGGATCGATCGGATCGATCGAG"
+print("+1:")
+for i in range(len(seq)-1):
+    print(seq[i], end = "")
+    count+=1
+    if count == 3:
+        count = 0
+        print(" ", end = "")
+print()
+count=0
+print("+2:")
+for i in range(1,len(seq)-1):
+    print(seq[i], end = "")
+    count+=1
+    if count == 3:
+        count = 0
+        print(" ", end = "")
+print()
+count=0
+print("+3:")
+for i in range(2, len(seq)-1):
+    print(seq[i], end = "")
+    count+=1
+    if count == 3:
+        count = 0
+        print(" ", end = "")
+print()
+comp = str.maketrans("ATGC", "TACG")
+complement = seq.translate(comp)
+print(f"The complementary sequence is {complement}")
+count = 0
+print("-1:")
+for i in range(len(complement)-1):
+    print(complement[i], end = "")
+    count+=1
+    if count == 3:
+        count = 0
+        print(" ", end = "")
+print()
+count=0
+print("-2:")
+for i in range(1,len(complement)-1):
+    print(complement[i], end = "")
+    count+=1
+    if count == 3:
+        count = 0
+        print(" ", end = "")
+print()
+count=0
+print("-3:")
+for i in range(2, len(complement)-1):
+    print(complement[i], end = "")
+    count+=1
+    if count == 3:
+        count = 0
+        print(" ", end = "")
