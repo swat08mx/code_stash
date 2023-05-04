@@ -1,58 +1,29 @@
+## First code block for identifying and printing the +1 reading frame and 
+## then identifying the start and stop codons, and also printing the protein coding sequences.
 
-count=0
-seq = "GATCGAATCGATCAGCTAGGATCGATCGGATCGATCGAG"
-print("+1:")
-for i in range(len(seq)-1):
-    print(seq[i], end = "")
-    count+=1
-    if count == 3:
-        count = 0
-        print(" ", end = "")
-print()
-count=0
-print("+2:")
-for i in range(1,len(seq)-1):
-    print(seq[i], end = "")
-    count+=1
-    if count == 3:
-        count = 0
-        print(" ", end = "")
-print()
-count=0
-print("+3:")
-for i in range(2, len(seq)-1):
-    print(seq[i], end = "")
-    count+=1
-    if count == 3:
-        count = 0
-        print(" ", end = "")
-print()
-comp = str.maketrans("ATGC", "TACG")
-complement = seq.translate(comp)
-print(f"The complementary sequence is {complement}")
+
+seq = "GCTACGTCTTACGCTAUGGGAGCTCTCGATCGGTTCUAGGTAGGGCTCGATCACATCGCCCA"
+
+# +1 frame
+seq_pos_one = ""
 count = 0
-print("-1:")
-for i in range(len(complement)-1):
-    print(complement[i], end = "")
-    count+=1
+for i in range(len(seq)):
+    seq_pos_one += seq[i]
+    count += 1
     if count == 3:
         count = 0
-        print(" ", end = "")
-print()
-count=0
-print("-2:")
-for i in range(1,len(complement)-1):
-    print(complement[i], end = "")
-    count+=1
-    if count == 3:
-        count = 0
-        print(" ", end = "")
-print()
-count=0
-print("-3:")
-for i in range(2, len(complement)-1):
-    print(complement[i], end = "")
-    count+=1
-    if count == 3:
-        count = 0
-        print(" ", end = "")
+        seq_pos_one += " "
+print(f"The +1 reading frame is: {seq_pos_one}")
+point=0
+final_string=''
+for i in range(len(seq)):
+    if seq_pos_one[i]=='A' and seq_pos_one[i+1]=='U' and seq_pos_one[i+2]=='G':
+        for j in range((i+3),len(seq_pos_one)):
+            if seq_pos_one[j]=='U'and seq_pos_one[j+1]=='A' and seq_pos_one[j+2]=='G':
+                break
+            else:
+                final_string+=seq_pos_one[j]
+if 'UAG' not in seq_pos_one or 'AUG' not in seq_pos_one:
+    print("No reading frames found")    
+else:
+    print(final_string)
