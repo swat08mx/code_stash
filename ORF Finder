@@ -1,8 +1,7 @@
 ## First code block for identifying and printing the +1 reading frame and 
 ## then identifying the start and stop codons, and also printing the protein coding sequences.
 
-
-seq = "GCTACGTCTTACGCTGGAGCTAUGCTCGATCGGTTCGTAGGGCTCGATUGACACATCGCCCA"
+seq = "GCTACGTCTTACGCTGGAGCTAUTCTCGATCGGTTCGTAGGGCTCGATUTACACATAGCCCA"
 # +1 frame
 seq_pos_one = ""
 count = 0
@@ -13,23 +12,29 @@ for i in range(len(seq)):
         count = 0
         seq_pos_one += " "
 print(f"The +1 reading frame is: {seq_pos_one}")
-final_string=''
+point=0
+final_string='AUG'
 for i in range(len(seq)):
     if seq_pos_one[i]=='A' and seq_pos_one[i+1]=='U' and seq_pos_one[i+2]=='G':
         for j in range((i+3),len(seq_pos_one)):
             if seq_pos_one[j]=='U'and seq_pos_one[j+1]=='A' and seq_pos_one[j+2]=='G':
+                point=1
+                break
+            elif seq_pos_one[j]=='U'and seq_pos_one[j+1]=='G' and seq_pos_one[j+2]=='A':
+                point=2
+                break
+            elif seq_pos_one[j]=='U'and seq_pos_one[j+1]=='A' and seq_pos_one[j+2]=='A':
+                point=3
                 break
             else:
                 final_string+=seq_pos_one[j]
-            if seq_pos_one[j]=='U'and seq_pos_one[j+1]=='G' and seq_pos_one[j+2]=='A':
-                break
-                
-            else:
-                final_string+=seq_pos_one[j]
-            if seq_pos_one[j]=='U'and seq_pos_one[j+1]=='A' and seq_pos_one[j+2]=='A':
-                break
-                
-            else:
-                final_string+=seq_pos_one[j]
-
-print('AUG' +final_string)
+if 'AUG' not in seq_pos_one:
+    print("No reading frames were found")
+elif point==1:
+    print(f'{final_string}UAG')
+elif point==2:
+    print(f'{final_string}UGA')
+elif point==3:
+    print(f'{final_string}UAA')    
+elif point==0:
+    print("No reading frames were found")   
