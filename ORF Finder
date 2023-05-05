@@ -1,8 +1,74 @@
 ## First code block for identifying and printing the +1 reading frame and 
 ## then identifying the start and stop codons, and also printing the protein coding sequences.
 
-seq = "GCTACGTCTTACGCTGGAGCTAUTCTCGATCGGTTCGTAGGGCTCGATUTACACATAGCCCA"
-# +1 frame
+
+codons = {
+    'GCU': 'Ala',
+    'GCC': 'Ala',
+    'GCA': 'Ala',
+    'GCG': 'Ala',
+    'CGU': 'Arg',
+    'CGC': 'Arg',
+    'CGA': 'Arg',
+    'CGG': 'Arg',
+    'AGA': 'Arg',
+    'AGG': 'Arg',
+    'AAU': 'Asn',
+    'AAC': 'Asn',
+    'GAU': 'Asp',
+    'GAC': 'Asp',
+    'UGU': 'Cys',
+    'UGC': 'Cys',
+    'CAA': 'Gln',
+    'CAG': 'Gln',
+    'GAA': 'Glu',
+    'GAG': 'Glu',
+    'GGU': 'Gly',
+    'GGC': 'Gly',
+    'GGA': 'Gly',
+    'GGG': 'Gly',
+    'CAU': 'His',
+    'CAC': 'His',
+    'AUU': 'Ile',
+    'AUC': 'Ile',
+    'AUA': 'Ile',
+    'UUA': 'Leu',
+    'UUG': 'Leu',
+    'CUU': 'Leu',
+    'CUC': 'Leu',
+    'CUA': 'Leu',
+    'CUG': 'Leu',
+    'AAA': 'Lys',
+    'AAG': 'Lys',
+    'AUG': 'Met',
+    'UUU': 'Phe',
+    'UUC': 'Phe',
+    'CCU': 'Pro',
+    'CCC': 'Pro',
+    'CCA': 'Pro',
+    'CCG': 'Pro',
+    'UCU': 'Ser',
+    'UCC': 'Ser',
+    'UCA': 'Ser',
+    'UCG': 'Ser',
+    'AGU': 'Ser',
+    'AGC': 'Ser',
+    'ACU': 'Thr',
+    'ACC': 'Thr',
+    'ACA': 'Thr',
+    'ACG': 'Thr',
+    'UGG': 'Trp',
+    'UAU': 'Tyr',
+    'UAC': 'Tyr',
+    'GUU': 'Val',
+    'GUC': 'Val',
+    'GUA': 'Val',
+    'GUG': 'Val'
+}
+seq = "AACAUGACCCGUUCGUCCUCCACAUGUACCUGGUAAAGACGAAAUUUUGUAAGAGAAGUGAGUGUAGACCUAAGCGGUUGCACAUUUGUGGUCCUACCGG"
+
+# +1 frame code
+
 seq_pos_one = ""
 count = 0
 for i in range(len(seq)):
@@ -12,6 +78,9 @@ for i in range(len(seq)):
         count = 0
         seq_pos_one += " "
 print(f"The +1 reading frame is: {seq_pos_one}")
+
+## scanning for the start and stop codons and printing it
+
 point=0
 final_string='AUG'
 for i in range(len(seq)):
@@ -31,10 +100,15 @@ for i in range(len(seq)):
 if 'AUG' not in seq_pos_one:
     print("No reading frames were found")
 elif point==1:
-    print(f'{final_string}UAG')
+    final_string = final_string+'UAG'
+    print(f'{final_string}')
 elif point==2:
-    print(f'{final_string}UGA')
+    final_string = final_string+'UGA'
+    print(f'{final_string}')
 elif point==3:
-    print(f'{final_string}UAA')    
+    final_string = final_string+'UAA'
+    print(f'{final_string}')    
 elif point==0:
-    print("No reading frames were found")   
+    print("No reading frames were found")    
+    
+## The translated sequence 
