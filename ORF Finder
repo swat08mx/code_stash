@@ -68,7 +68,8 @@ codons = {
     'UGA': '',
     'UAG': ''
 }
-seq = "ACACCCGUUCGUCCUCCACUACCUGGUAAAGACGAAAUUGUUGUAAGAGAAGGUGUAGACCGCGGUUGAACAUUUGUAGGUCCACCGG"
+seq = "ACAAUGCCCGUUCGUCCUCCACUACCUGGUAAAGACGAAAUUGUUGUAAGAGAAGGUGUAGACCGCGGUUAAACAUUUGUAGGUCCACCGG"
+# seq=input("Enter the DNA sequence: ")
 
 # +1 frame code
 
@@ -102,6 +103,7 @@ for i in range(len(seq)):
                 final_string+=seq_pos_one[j]
 if 'AUG' not in seq_pos_one:
     print("No reading frames were found")
+    final_string=''
 elif point==1:
     final_string = final_string+'UAG'
     print(f'The reading frame is: {final_string}')
@@ -112,7 +114,8 @@ elif point==3:
     final_string = final_string+'UAA'
     print(f'The reading frame is: {final_string}')    
 elif point==0:
-    print("No reading frames were found")    
+    print("No reading frames were found") 
+    final_string=''
     
 ## The translated sequence 
 
@@ -127,4 +130,7 @@ for i in range(len(final)):
         translated+=codons[letters]
         points=0
         letters=''
-print(f'The amino acid sequence is: {translated}')
+if final_string=='':
+    pass
+else:    
+    print(f'The amino acid sequence is: {translated}')
