@@ -3,69 +3,72 @@
 
 
 codons = {
-    'GCU': 'Ala',
-    'GCC': 'Ala',
-    'GCA': 'Ala',
-    'GCG': 'Ala',
-    'CGU': 'Arg',
-    'CGC': 'Arg',
-    'CGA': 'Arg',
-    'CGG': 'Arg',
-    'AGA': 'Arg',
-    'AGG': 'Arg',
-    'AAU': 'Asn',
-    'AAC': 'Asn',
-    'GAU': 'Asp',
-    'GAC': 'Asp',
-    'UGU': 'Cys',
-    'UGC': 'Cys',
-    'CAA': 'Gln',
-    'CAG': 'Gln',
-    'GAA': 'Glu',
-    'GAG': 'Glu',
-    'GGU': 'Gly',
-    'GGC': 'Gly',
-    'GGA': 'Gly',
-    'GGG': 'Gly',
-    'CAU': 'His',
-    'CAC': 'His',
-    'AUU': 'Ile',
-    'AUC': 'Ile',
-    'AUA': 'Ile',
-    'UUA': 'Leu',
-    'UUG': 'Leu',
-    'CUU': 'Leu',
-    'CUC': 'Leu',
-    'CUA': 'Leu',
-    'CUG': 'Leu',
-    'AAA': 'Lys',
-    'AAG': 'Lys',
-    'AUG': 'Met',
-    'UUU': 'Phe',
-    'UUC': 'Phe',
-    'CCU': 'Pro',
-    'CCC': 'Pro',
-    'CCA': 'Pro',
-    'CCG': 'Pro',
-    'UCU': 'Ser',
-    'UCC': 'Ser',
-    'UCA': 'Ser',
-    'UCG': 'Ser',
-    'AGU': 'Ser',
-    'AGC': 'Ser',
-    'ACU': 'Thr',
-    'ACC': 'Thr',
-    'ACA': 'Thr',
-    'ACG': 'Thr',
-    'UGG': 'Trp',
-    'UAU': 'Tyr',
-    'UAC': 'Tyr',
-    'GUU': 'Val',
-    'GUC': 'Val',
-    'GUA': 'Val',
-    'GUG': 'Val'
+    'GCU': 'Ala ',
+    'GCC': 'Ala ',
+    'GCA': 'Ala ',
+    'GCG': 'Ala ',
+    'CGU': 'Arg ',
+    'CGC': 'Arg ',
+    'CGA': 'Arg ',
+    'CGG': 'Arg ',
+    'AGA': 'Arg ',
+    'AGG': 'Arg ',
+    'AAU': 'Asn ',
+    'AAC': 'Asn ',
+    'GAU': 'Asp ',
+    'GAC': 'Asp ',
+    'UGU': 'Cys ',
+    'UGC': 'Cys ',
+    'CAA': 'Gln ',
+    'CAG': 'Gln ',
+    'GAA': 'Glu ',
+    'GAG': 'Glu ',
+    'GGU': 'Gly ',
+    'GGC': 'Gly ',
+    'GGA': 'Gly ',
+    'GGG': 'Gly ',
+    'CAU': 'His ',
+    'CAC': 'His ',
+    'AUU': 'Ile ',
+    'AUC': 'Ile ',
+    'AUA': 'Ile ',
+    'UUA': 'Leu ',
+    'UUG': 'Leu ',
+    'CUU': 'Leu ',
+    'CUC': 'Leu ',
+    'CUA': 'Leu ',
+    'CUG': 'Leu ',
+    'AAA': 'Lys ',
+    'AAG': 'Lys ',
+    'AUG': 'Met ',
+    'UUU': 'Phe ',
+    'UUC': 'Phe ',
+    'CCU': 'Pro ',
+    'CCC': 'Pro ',
+    'CCA': 'Pro ',
+    'CCG': 'Pro ',
+    'UCU': 'Ser ',
+    'UCC': 'Ser ',
+    'UCA': 'Ser ',
+    'UCG': 'Ser ',
+    'AGU': 'Ser ',
+    'AGC': 'Ser ',
+    'ACU': 'Thr ',
+    'ACC': 'Thr ',
+    'ACA': 'Thr ',
+    'ACG': 'Thr ',
+    'UGG': 'Trp ',
+    'UAU': 'Tyr ',
+    'UAC': 'Tyr ',
+    'GUU': 'Val ',
+    'GUC': 'Val ',
+    'GUA': 'Val ',
+    'GUG': 'Val ',
+    'UAA': '',
+    'UGA': '',
+    'UAG': ''
 }
-seq = "AACAUGACCCGUUCGUCCUCCACAUGUACCUGGUAAAGACGAAAUUUUGUAAGAGAAGUGAGUGUAGACCUAAGCGGUUGCACAUUUGUGGUCCUACCGG"
+seq = "ACACCCGUUCGUCCUCCACUACCUGGUAAAGACGAAAUUGUUGUAAGAGAAGGUGUAGACCGCGGUUGAACAUUUGUAGGUCCACCGG"
 
 # +1 frame code
 
@@ -101,14 +104,27 @@ if 'AUG' not in seq_pos_one:
     print("No reading frames were found")
 elif point==1:
     final_string = final_string+'UAG'
-    print(f'{final_string}')
+    print(f'The reading frame is: {final_string}')
 elif point==2:
     final_string = final_string+'UGA'
-    print(f'{final_string}')
+    print(f'The reading frame is: {final_string}')
 elif point==3:
     final_string = final_string+'UAA'
-    print(f'{final_string}')    
+    print(f'The reading frame is: {final_string}')    
 elif point==0:
     print("No reading frames were found")    
     
 ## The translated sequence 
+
+points=0
+translated=''
+letters=''
+final = final_string.replace(' ', '')
+for i in range(len(final)):
+    letters+=final[i]
+    points+=1
+    if points==3:
+        translated+=codons[letters]
+        points=0
+        letters=''
+print(f'The amino acid sequence is: {translated}')
