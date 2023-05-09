@@ -124,9 +124,7 @@ if point!=0:
     for i, orf in enumerate(orfs):
         print(f'The ORFs {i+1} is: {orf}')
         print(f'The amino acid sequence for ORF{i+1} is: {translation(orf)}')
-elif point==0:
+elif point==0 or 'AUG' not in seq_pos_one:
     print("No reading frames were found")
     exit()
-if 'AUG' not in seq_pos_one:
-    print("No reading frames were found")
-    final_string=''
+
