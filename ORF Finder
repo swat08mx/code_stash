@@ -67,8 +67,7 @@ codons = {
     'UGA': '',
     'UAG': ''
 }
-
-seq="AGCCCUCCAGGACAGGCUGCAGCAGAAGAGAUGGCCAUCAAGCAGUAAGUCUGUUCCAAGGGCCUUUGCAUGGUCAGGUGGGCUCAGGAUUCCUGAAGGUAAGUGGCUGGACCCCAGGCCCCAGC"
+seq="CCCUCCAGGACGCUGCAGCAGAAGAGGAUGCCAUCAAGCAGUAAGUCUGUUCCAAGGGCCUUUGCAGGUCAGGUGGGCUCAGGAUUCCUGAAGGUGGCUGGACCCCAGGCCUAACCAGC"
 seq_pos_one = ""
 count = 0
 for i in range(len(seq)):
@@ -95,7 +94,7 @@ def translation(final_string):
     else:    
         return translated
 orfs=[]
-point=1
+point=0
 found=1
 final_string=''
 for i in range(len(seq)):
@@ -111,20 +110,20 @@ for i in range(len(seq)):
             elif seq_pos_one[j]=='U'and seq_pos_one[j+1]=='A' and seq_pos_one[j+2]=='A':
                 point+=1
                 break
-            
             else:
                 final_string+=seq_pos_one[j]
-            if point==0:
-                orfs=[]
-                break
         if found>1 and found%found==0:
             orfs.append('AUG'+final_string)
             final_string=''
+print(point)
 if point!=0:
     for i, orf in enumerate(orfs):
         print(f'The ORFs {i+1} is: {orf}')
         print(f'The amino acid sequence for ORF{i+1} is: {translation(orf)}')
-elif point==0 or 'AUG' not in seq_pos_one:
+elif point==0:
     print("No reading frames were found")
     exit()
+if 'AUG' not in seq_pos_one:
+    print("No reading frames were found")
+    final_string=''
 
