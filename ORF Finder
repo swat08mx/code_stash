@@ -68,7 +68,7 @@ codons = {
     'UAG': ''
 }
 
-seq="AGCAUGCCUCCAGGAUGACAGGCUGCAAUGGCAGAAGAGUAAGCCAUCAAGCAGGUCUGUUCCAAGGGCCUUUGCGUCAGGUGGGCUCAGGAUUCCAGGGUGGCUGGACCCCAGGCCCCAGC"
+seq="AGCCCUCCAGGACAGGCUGCAGCAGAAGAGAUGGCCAUCAAGCAGUAAGUCUGUUCCAAGGGCCUUUGCAUGGUCAGGUGGGCUCAGGAUUCCUGAAGGUAAGUGGCUGGACCCCAGGCCCCAGC"
 seq_pos_one = ""
 count = 0
 for i in range(len(seq)):
@@ -78,8 +78,6 @@ for i in range(len(seq)):
         count = 0
         seq_pos_one += " "
 print(f"The +1 reading frame is: {seq_pos_one}")
-
-## The translated sequence 
 def translation(final_string):
     points=0
     translated=''
@@ -96,9 +94,8 @@ def translation(final_string):
         pass
     else:    
         return translated
-## scanning for the start and stop codons and printing it
 orfs=[]
-point=0
+point=1
 found=1
 final_string=''
 for i in range(len(seq)):
@@ -106,26 +103,30 @@ for i in range(len(seq)):
         found+=1
         for j in range((i+3),len(seq_pos_one)):
             if seq_pos_one[j]=='U'and seq_pos_one[j+1]=='A' and seq_pos_one[j+2]=='G':
+                point+=1
                 break
             elif seq_pos_one[j]=='U'and seq_pos_one[j+1]=='G' and seq_pos_one[j+2]=='A':
+                point+=1
                 break
             elif seq_pos_one[j]=='U'and seq_pos_one[j+1]=='A' and seq_pos_one[j+2]=='A':
+                point+=1
                 break
-            # elif 'UAG' or 'UGA' or 'UAA' not in seq_pos_one:
-            #     point=1
-            #     print("No reading frames were found")
-            #     break
             
             else:
                 final_string+=seq_pos_one[j]
+            if point==0:
+                orfs=[]
+                break
         if found>1 and found%found==0:
-            orfs.append(final_string)
+            orfs.append('AUG'+final_string)
             final_string=''
-      
-for i, orf in enumerate(orfs):
-    print(f'The ORFs {i+1} is: {orf}')
-    print(f'The amino acid sequence for ORF{i+1} is: {translation(orf)}')
-
+if point!=0:
+    for i, orf in enumerate(orfs):
+        print(f'The ORFs {i+1} is: {orf}')
+        print(f'The amino acid sequence for ORF{i+1} is: {translation(orf)}')
+elif point==0:
+    print("No reading frames were found")
+    exit()
 if 'AUG' not in seq_pos_one:
     print("No reading frames were found")
     final_string=''
