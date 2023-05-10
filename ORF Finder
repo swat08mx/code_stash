@@ -67,7 +67,7 @@ codons = {
     'UGA': '',
     'UAG': ''
 }
-seq="CCCUCCAGGACGCUGCAGCAGAAGAGGAUGCCAUCAAGCAGUAAGUCUGUUCCAAGGGCCUUUGCAGGUCAGGUGGGCUCAGGAUUCCUGAAGGUGGCUGGACCCCAGGCCUAACCAGC"
+seq="CCCUCCAGGACGCUGCAGCAGAAGAGGAUGCCAUCAUAGAGCAGUAAGUCUUAAGUUCCAAUGAGGGCCUUUUGAGCAGGUCAGGUGGGCUCAGGAUUCCUGAAGGUGGCUGGACCCCAGGCCCCAGC"
 seq_pos_one = ""
 count = 0
 for i in range(len(seq)):
@@ -115,7 +115,7 @@ for i in range(len(seq)):
         if found>1 and found%found==0:
             orfs.append('AUG'+final_string)
             final_string=''
-print(point)
+
 if point!=0:
     for i, orf in enumerate(orfs):
         print(f'The ORFs {i+1} is: {orf}')
@@ -126,4 +126,3 @@ elif point==0:
 if 'AUG' not in seq_pos_one:
     print("No reading frames were found")
     final_string=''
-
