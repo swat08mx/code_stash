@@ -125,7 +125,7 @@ for k in range(3):
             print(f'The amino acid sequence for ORF{i+1} is: {translation(orf)}')
     elif point==0:
         print("No reading frames were found")
-        break
+        pass
     if 'AUG' not in seq_pos:
         print("No reading frames were found")
         final_string=''
