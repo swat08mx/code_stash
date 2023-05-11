@@ -67,62 +67,80 @@ codons = {
     'UGA': '',
     'UAG': ''
 }
-seq="CCCUCCAGGACGCUGCAGCAGAAGAGGAUGCCAUCAUAGAGCAGUAAGUCUUAAGUUCCAAUGAGGGCCUUUUGAGCAGGUCAGGUGGGCUCAGGAUUCCUGAAGGUGGCUGGACCCCAGGCCCCAGC"
-seq_pos_one = ""
-count = 0
-for i in range(len(seq)):
-    seq_pos_one += seq[i]
-    count += 1
-    if count == 3:
-        count = 0
-        seq_pos_one += " "
-print(f"The +1 reading frame is: {seq_pos_one}")
-def translation(final_string):
-    points=0
-    translated=''
-    letters=''
-    final = final_string.replace(' ', '')
-    for i in range(len(final)):
-        letters+=final[i]
-        points+=1
-        if points==3:
-            translated+=codons[letters]
-            points=0
-            letters=''
-    if final_string=='':
-        pass
-    else:    
-        return translated
-orfs=[]
-point=0
-found=1
-final_string=''
-for i in range(len(seq)):
-    if seq_pos_one[i]=='A' and seq_pos_one[i+1]=='U' and seq_pos_one[i+2]=='G':
-        found+=1
-        for j in range((i+3),len(seq_pos_one)):
-            if seq_pos_one[j]=='U'and seq_pos_one[j+1]=='A' and seq_pos_one[j+2]=='G':
-                point+=1
-                break
-            elif seq_pos_one[j]=='U'and seq_pos_one[j+1]=='G' and seq_pos_one[j+2]=='A':
-                point+=1
-                break
-            elif seq_pos_one[j]=='U'and seq_pos_one[j+1]=='A' and seq_pos_one[j+2]=='A':
-                point+=1
-                break
-            else:
-                final_string+=seq_pos_one[j]
-        if found>1 and found%found==0:
-            orfs.append('AUG'+final_string)
-            final_string=''
+seq="CCCUAUGGGACGCUGCAGCAGAAGAGGAUGCCAUCAUAGAGCAGUAAGUCUUAAGUUCCAAGGGCCUUUUGAGCAGGUCAGGUGGGCUCAGGAUUCCAGGUGGCUGGACCCCAGGCCCCAGC"
 
-if point!=0:
-    for i, orf in enumerate(orfs):
-        print(f'The ORFs {i+1} is: {orf}')
-        print(f'The amino acid sequence for ORF{i+1} is: {translation(orf)}')
-elif point==0:
-    print("No reading frames were found")
-    exit()
-if 'AUG' not in seq_pos_one:
-    print("No reading frames were found")
+## frames +1 +2 +3
+for k in range(3):
+    seq_pos = ""
+    count = 0
+    for i in range(k, len(seq)):
+        seq_pos += seq[i]
+        count += 1
+        if count == 3:
+            count = 0
+            seq_pos += " "
+    print(f"The +{k+1} reading frame is: {seq_pos}")
+    def translation(final_string):
+        points=0
+        translated=''
+        letters=''
+        final = final_string.replace(' ', '')
+        for i in range(len(final)):
+            letters+=final[i]
+            points+=1
+            if points==3:
+                translated+=codons[letters]
+                points=0
+                letters=''
+        if final_string=='':
+            pass
+        else:    
+            return translated
+    orfs=[]
+    point=0
+    found=1
     final_string=''
+    for i in range(len(seq_pos)):
+        if seq_pos[i]=='A' and seq_pos[i+1]=='U' and seq_pos[i+2]=='G':
+            found+=1
+            for j in range((i+3),len(seq_pos)):
+                if seq_pos[j]=='U'and seq_pos[j+1]=='A' and seq_pos[j+2]=='G':
+                    point+=1
+                    break
+                elif seq_pos[j]=='U'and seq_pos[j+1]=='G' and seq_pos[j+2]=='A':
+                    point+=1
+                    break
+                elif seq_pos[j]=='U'and seq_pos[j+1]=='A' and seq_pos[j+2]=='A':
+                    point+=1
+                    break
+                else:
+                    final_string+=seq_pos[j]
+            if found>1 and found%found==0:
+                orfs.append('AUG'+final_string)
+                final_string=''
+
+    if point!=0:
+        for i, orf in enumerate(orfs):
+            print(f'The ORFs {i+1} is: {orf}')
+            print(f'The amino acid sequence for ORF{i+1} is: {translation(orf)}')
+    elif point==0:
+        print("No reading frames were found")
+        break
+    if 'AUG' not in seq_pos:
+        print("No reading frames were found")
+        final_string=''
+    print()
+print()
+def spaces(seq):
+    seq_pos = ""
+    count = 0
+    for i in range(len(seq)):
+        seq_pos += seq[i]
+        count += 1
+        if count == 3:
+            count = 0
+            seq_pos += " "
+    return seq_pos
+comp = str.maketrans("AUGC", "UACG")
+complement = seq.translate(comp)
+print(f"The complementary sequence is {spaces(complement)}")
