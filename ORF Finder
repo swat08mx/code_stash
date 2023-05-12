@@ -67,9 +67,6 @@ codons = {
     'TAG': '',
     'TGA': ''
 }
-
-
-  
 # seq="CCCUAUGGAUGGACGCUGCAGCAUAAGAAGAGGAUGCCAUCAUAGAGCAGUAAGUCUUAAGUUCCAAGGGCCUUUUGAGCAGGUCAGGUGGGCUCAGGAUUCCAGGUGGCUGGACCCCAGGCCCCAGC"
 file = open('sequence.fasta','r')
 newlist=[]
@@ -162,69 +159,68 @@ def spaces(result):
 comp = str.maketrans("ATGC", "TACG")
 complement = result.translate(comp)
 print(f"The complementary sequence is {spaces(complement)}")
-res_two = spaces(complement)
 print()
 # code for frames -1 -2 -3
 for f in range(3):
     seq_neg = ""
     count = 0
-    for i in range(f, len(res_two)):
-        seq_neg += res_two[i]
-        count += 1
-        if count == 3:
-            count = 0
-            seq_neg += ""
+    for i in range(f,len(complement)):
+            seq_neg += complement[i]
+            count += 1
+            if count == 3:
+                count = 0
+                seq_neg += " "
     print(f"The -{f+1} reading frame is: {seq_neg}")
     print()
     def translation(final_string):
-        points=0
-        translated=''
-        letters=''
-        final = final_string.replace(' ', '')
-        for i in range(len(final)):
-            letters+=final[i]
-            points+=1
-            if points==3:
-                translated+=codons[letters]
-                points=0
-                letters=''
-        if final_string=='':
-            pass
-        else:    
-            return translated
+            points=0
+            translated=''
+            letters=''
+            final = final_string.replace(' ', '')
+            for i in range(len(final)):
+                letters+=final[i]
+                points+=1
+                if points==3:
+                    translated+=codons[letters]
+                    points=0
+                    letters=''
+            if final_string=='':
+                pass
+            else:    
+                return translated
     orfs=[]
     point=0
     found=1
     final_string=''
     for i in range(len(seq_neg)):
-        try:
-            if seq_neg[i]=='A' and seq_neg[i+1]=='T' and seq_neg[i+2]=='G':
-                found+=1
-                for j in range((i+3),len(seq_neg)):
-                    if seq_neg[j]=='T'and seq_neg[j+1]=='A' and seq_neg[j+2]=='G':
-                        point+=1
-                        break
-                    elif seq_neg[j]=='T'and seq_neg[j+1]=='G' and seq_neg[j+2]=='A':
-                        point+=1
-                        break
-                    elif seq_neg[j]=='T'and seq_neg[j+1]=='A' and seq_neg[j+2]=='A':
-                        point+=1
-                        break
-                    else:
-                        final_string+=seq_neg[j]
-                if found>1 and found%found==0:
-                    orfs.append('ATG'+final_string)
-                    final_string=''
-        except:
-            pass
+            try:
+                if seq_neg[i]=='A' and seq_neg[i+1]=='T' and seq_neg[i+2]=='G':
+                    found+=1
+                    for j in range((i+3),len(seq_neg)):
+                        if seq_neg[j]=='T'and seq_neg[j+1]=='A' and seq_neg[j+2]=='G':
+                            point+=1
+                            break
+                        elif seq_neg[j]=='T'and seq_neg[j+1]=='G' and seq_neg[j+2]=='A':
+                            point+=1
+                            break
+                        elif seq_neg[j]=='T'and seq_neg[j+1]=='A' and seq_neg[j+2]=='A':
+                            point+=1
+                            break
+                        else:
+                            final_string+=seq_neg[j]
+                    if found>1 and found%found==0:
+                        orfs.append('ATG'+final_string)
+                        final_string=''
+            except:
+                pass
     if point!=0:
-        for i, orf in enumerate(orfs):
-            print(f'The ORFs {i+1} is: {orf}')
-            print(f'The amino acid sequence for ORF{i+1} is: {translation(orf)}')
+            for i, orf in enumerate(orfs):
+                print(f'The ORFs {i+1} is: {orf}')
+                print(f'The amino acid sequence for ORF{i+1} is: {translation(orf)}')
     elif point==0:
-        print("No reading frames were found")
-        print()
-        pass
+            print("No reading frames were found")
+            print()
+            pass
     if 'ATG' not in seq_neg:
-        print("No reading frames were found")
+            print("No reading frames were found")
     print()
