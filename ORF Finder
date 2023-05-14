@@ -1,3 +1,7 @@
+import time
+
+start_time = time.perf_counter()
+
 codons = {
     'GCT': 'Ala','GCC': 'Ala','GCA': 'Ala','GCG': 'Ala','CGT': 'Arg','CGC': 'Arg','CGA': 'Arg','CGG': 'Arg','AGA': 'Arg','AGG': 'Arg',
     'AAT': 'Asn','AAC': 'Asn','GAT': 'Asp','GAC': 'Asp','TGT': 'Cys','TGC': 'Cys','CAA': 'Gln','CAG': 'Gln','GAA': 'Glu','GAG': 'Glu',
@@ -8,7 +12,7 @@ codons = {
     'GTG': 'Val','TAA': '','TAG': '','TGA': ''
 }
 # seq="CCCUAUGGAUGGACGCUGCAGCAUAAGAAGAGGAUGCCAUCAUAGAGCAGUAAGUCUUAAGUUCCAAGGGCCUUUUGAGCAGGUCAGGUGGGCUCAGGAUUCCAGGUGGCUGGACCCCAGGCCCCAGC"
-file = open('sequence 2.fasta','r')
+file = open('insulin.fasta','r')
 newlist=[]
 seq=''
 listtwo=[]
@@ -30,7 +34,7 @@ for k in range(3):
             count = 0
             seq_pos += " "
     print(f"The +{k+1} reading frame is: {seq_pos}")
-    print()
+    print("**********************************************************************************************")
     def translation(final_string):
         points=0
         translated=''
@@ -76,7 +80,10 @@ for k in range(3):
         try:
             for i, orf in enumerate(orfs):
                 print(f'The ORFs {i+1} is: {orf}')
+                print()
                 print(f'The amino acid sequence for ORF{i+1} is: {translation(orf)}')
+                print()
+                
         except:
                 print()
                 print("*******************There was an unknown error in translation at ORF, report this to dev.**********************")
@@ -115,7 +122,7 @@ for f in range(3):
                 count = 0
                 seq_neg += " "
     print(f"The -{f+1} reading frame is: {seq_neg}")
-    print()
+    print("*************************************************************************************************")
     def translation(final_string):
             points=0
             translated=''
@@ -161,7 +168,9 @@ for f in range(3):
         try:
             for i, orf in enumerate(orfs):
                 print(f'The ORFs {i+1} is: {orf}')
+                print()
                 print(f'The amino acid sequence for ORF{i+1} is: {translation(orf)}')
+                print()
         except:
             print()
             print("*******************There was an unknown error in translation, report this to dev.**********************")
@@ -173,3 +182,9 @@ for f in range(3):
     if 'ATG' not in seq_neg:
             print("No reading frames were found")
     print()
+    
+end_time = time.perf_counter()
+
+execution_time = end_time - start_time
+
+print(f"Execution time: {execution_time:.5f} seconds")
