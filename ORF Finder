@@ -9,19 +9,19 @@ codons = {
     'ACT': 'Thr','ACC': 'Thr','ACA': 'Thr','ACG': 'Thr','TGG': 'Trp','TAT': 'Tyr','TAC': 'Tyr','GTT': 'Val','GTC': 'Val','GTA': 'Val',
     'GTG': 'Val','TAA': '','TAG': '','TGA': ''
 }
-# file = open('sequence1.fasta','r')
-# newlist=[]
-# seq=''
-# listtwo=[]
-# for lines in file:
-#     count=0
-#     if '\n' in lines:
-#         newlist.append(lines)
-# for i in range(1,len(newlist)-1):
-#     seq+=newlist[i]
-# result = "".join(line.strip() for line in seq.splitlines())
-results='gatgttcgggggcgcctgtgcgaagccgaatgtccttaccctggttaattgtctaagtcagttatttaacatcgtcacgggtgacacgatcgctttgagctattataagtgtcagactgccacttaccgttgatagtggtcaatgtattt'
-result = results.upper()
+file = open('sequence1.fasta','r')
+newlist=[]
+seq=''
+listtwo=[]
+for lines in file:
+    count=0
+    if '\n' in lines:
+        newlist.append(lines)
+for i in range(1,len(newlist)-1):
+    seq+=newlist[i]
+result = "".join(line.strip() for line in seq.splitlines())
+# results='gatgttcgggggcgcctgtgcgaagccgaatgtccttaccctggttaattgtctaagtcagttatttaacatcgtcacgggtgacacgatcgctttgagctattataagtgtcagactgccacttaccgttgatagtggtcaatgtattt'
+# result = results.upper()
 ####### functions ########
 def translation(final_string):
         points=0
@@ -39,6 +39,7 @@ def translation(final_string):
             pass
         else:    
             return translated
+        
 def spaces(f, result):
     seq_pos = ""
     count = 0
@@ -49,6 +50,13 @@ def spaces(f, result):
             count = 0
             seq_pos += " "
     return seq_pos
+
+def del_spaces(seq):
+    for i in range(len(seq)):
+        if seq[i]==' ':
+            seqnew=seq.replace(' ', '')
+    return(seqnew)
+    
 
 def driver_main(count, result, number):
     for f in range(3):
@@ -88,7 +96,8 @@ def driver_main(count, result, number):
         if point!=0:
             try:
                 for i, orf in enumerate(orfs):
-                    if len(orf) > number:
+                    new_orf=del_spaces(orf)
+                    if len(new_orf) > number:
                         if signal==1:
                             print(f'The ORFs {i+1} is: {orf}TAG\n')
                         elif signal==2:
