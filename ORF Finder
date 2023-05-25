@@ -109,7 +109,7 @@ def driver_main(count, result, number):
                         continue
             except:
                     print()
-                    print("*******************There was an unknown error in translation at ORF, report this to dev.**********************\n")
+                    print("*******************(N) ERROR**********************\n")
                     print()
                     pass
         elif point==0:
