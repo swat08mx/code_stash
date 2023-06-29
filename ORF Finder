@@ -9,19 +9,24 @@ codons = {
     'ACT': 'Thr','ACC': 'Thr','ACA': 'Thr','ACG': 'Thr','TGG': 'Trp','TAT': 'Tyr','TAC': 'Tyr','GTT': 'Val','GTC': 'Val','GTA': 'Val',
     'GTG': 'Val','TAA': '','TAG': '','TGA': ''
 }
-file = open('sequence1.fasta','r')
-newlist=[]
-seq=''
-listtwo=[]
-for lines in file:
-    count=0
-    if '\n' in lines:
-        newlist.append(lines)
-for i in range(1,len(newlist)-1):
-    seq+=newlist[i]
-result = "".join(line.strip() for line in seq.splitlines())
-# results='gatgttcgggggcgcctgtgcgaagccgaatgtccttaccctggttaattgtctaagtcagttatttaacatcgtcacgggtgacacgatcgctttgagctattataagtgtcagactgccacttaccgttgatagtggtcaatgtattt'
-# result = results.upper()
+### To put your own FASTA file into the prog, de-comment the following code and comment the 24th and 25th line ###
+
+# file = open('sequence 2.fasta','r')
+# newlist=[]
+# seq=''
+# listtwo=[]
+# for lines in file:
+#     count=0
+#     if '\n' in lines:
+#         newlist.append(lines)
+# for i in range(1,len(newlist)-1):
+#     seq+=newlist[i]
+# result = "".join(line.strip() for line in seq.splitlines())
+
+results='gatgttcgggggcgcctgtgcgaagccgaatgtccttaccctggttaattgtctaagtcagttatttaacatcgtcacgggtgacacgatcgctttgagctattataagtgtcagactgccacttaccgttgatagtggtcaatgtattt'
+result = results.upper()
+
+
 ####### functions ########
 def translation(final_string):
         points=0
@@ -109,7 +114,7 @@ def driver_main(count, result, number):
                         continue
             except:
                     print()
-                    print("*******************(N) ERROR**********************\n")
+                    print("*******************There was an unknown error in translation at ORF, report this to dev.**********************\n")
                     print()
                     pass
         elif point==0:
